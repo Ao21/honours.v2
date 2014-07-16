@@ -1,0 +1,37 @@
+<ul id="gn-menu" class="gn-menu-main">
+    <li class="gn-trigger">
+        <a ng-mouseenter="openIconMenu()" ng-mouseleave="closeIconMenu()" class="gn-icon gn-icon-menu">
+            <span>Menu</span>
+        </a>
+        <nav ng-mouseenter="openMenu()" class="gn-menu-wrapper">
+            <div class="gn-scroller">
+                <ul class="gn-menu">
+                    <li class="gn-search-item">
+                        <input placeholder="Search" type="search" class="gn-search">
+                        <img class="iconic" nag-iconic data-src="assets/vendor/iconic/svg/smart/magnifying-glass.svg" />
+                    </li>
+                    <li>
+                        <img class="iconic" nag-iconic data-src="assets/vendor/iconic/svg/smart/copywriting.svg" />
+                        <a ng-click="addTopic()" class="">Add A Topic</a>
+                        <ul class="gn-submenu">
+                            <li>
+                                <img class="iconic" data-state="intact" nag-iconic data-src="assets/vendor/iconic/svg/smart/link.svg" />
+                                <a ng-click="connectTopics()" class="">Connect Two Topics</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <img class="iconic" nag-iconic data-src="assets/vendor/iconic/svg/smart/task.svg" />
+                        <a class="">Add A Project</a>
+                    </li>
+                    <li>
+                        <img class="iconic" nag-iconic data-src="assets/vendor/iconic/svg/smart/question-mark.svg" />
+                        <a class="">Help</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /gn-scroller -->
+        </nav>
+    </li>
+</ul>

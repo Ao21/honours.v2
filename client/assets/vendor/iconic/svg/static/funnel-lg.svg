@@ -1,0 +1,10 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="128" height="128" data-icon="funnel" class="iconic iconic-funnel iconic-size-lg" viewBox="0 0 128 128">
+  <g class="iconic-metadata">
+    <title>Funnel</title>
+  </g>
+  <g class="iconic-container" data-width="120" data-height="128" transform="translate(4)">
+    <path d="M3.061 17.061l47.879 47.879c.586.586 1.061 1.732 1.061 2.561v59c0 .828.601 1.2 1.342.829l13.317-6.658c.741-.371 1.342-1.342 1.342-2.171v-51c0-.828.475-1.975 1.061-2.561l47.879-47.879c.586-.586 1.061-1.732 1.061-2.561v-13c0-.828-.672-1.5-1.5-1.5h-113c-.828 0-1.5.672-1.5 1.5v13c0 .828.475 1.975 1.061 2.561z"
+    class="iconic-funnel-body iconic-property-fill" />
+    <path d="M1 3c-.552-.552-1-1.448-1-2s.672-1 1.5-1h117c.828 0 1.5.448 1.5 1s-.466 1.466-1.042 2.042c-.575.575-1.713 1.041-2.542 1.041l-112.917-.081c-.828-.001-1.948-.449-2.5-1.001z" class="iconic-funnel-rim iconic-property-fill" />
+  </g>
+</svg>

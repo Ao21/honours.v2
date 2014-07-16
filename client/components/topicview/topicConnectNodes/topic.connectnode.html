@@ -1,0 +1,11 @@
+<div ng-hide="Topic.connectVisible" class="">
+	<h1>First Node</h1>
+	<select ng-model="sourceNode" ng-options="item.id as item.name for item in Topic.nodes">
+    <option value="">Select Account</option>
+</select>
+	<h1>Target Node</h1>
+	<select ng-model="targetNode" ng-options="item.id as item.name for item in Topic.nodes">
+    <option value="">Select Account</option>
+</select>
+<button ng-click="connectAccounts()">Connect</button>
+</div>
