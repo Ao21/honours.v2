@@ -20,6 +20,10 @@ angular.module('honoursApp')
                 return baseApi.all('topics/batch/').post(topics);
 
             },
+            latestUpdates: function(id){
+                return baseApi.one('tracks/topic', id).getList();
+            },
+            //Old stuff
             addTaskWithAccount: function(taskDetails) {
                 taskDetails.id = this.createTaskId();
                 return baseApi.all('tasks').post(taskDetails);

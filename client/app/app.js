@@ -7,6 +7,7 @@ angular.module('honoursApp', [
   'ui.bootstrap',
   'btford.socket-io',
   'ui.router',
+  'angular-medium-editor',
   'restangular'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {

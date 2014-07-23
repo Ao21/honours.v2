@@ -1,0 +1,17 @@
+<div class="notifications">
+	<h1>Notifications</h1>
+	<div  ng-repeat="item in updates" class="notification media notification-length-{{updates.length}}">
+		<div class="pull-left">
+			<div ng-show="{{!item.userId.google}}" class="media-object"></div>
+			<img src="{{item.userId.google.picture}}" alt="">
+
+
+		</div>
+		<div class="bar"></div>
+		<div class="media-body">
+			<h6 class='flush'>{{item.created|date}}</h6>
+			<p>{{item.userId.google.given_name}} has {{item.action}} {{item.attachedTo.name}}</p>
+		</div>
+		
+	</div>
+</div>

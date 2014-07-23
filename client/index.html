@@ -13,6 +13,8 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/medium-editor/dist/css/medium-editor.css" />
+      <link rel="stylesheet" href="bower_components/medium-editor/dist/css/themes/default.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -20,6 +22,8 @@
       <!-- injector:css -->
       <!-- endinjector -->
     <!-- endbuild -->
+    <script type="text/javascript" src="//use.typekit.net/lug0qwv.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   </head>
   <body ng-app="honoursApp">
     <!--[if lt IE 7]>
@@ -46,6 +50,8 @@
     <![endif]-->
     <script src="socket.io/socket.io.js"></script>
     <script src="assets/vendor/cola.js"></script>
+    <script src="assets/vendor/diffmatchpatch.js"></script>
+    <script src="assets/vendor/rangy.js"></script>
     <script src="assets/vendor/iconic/js/iconic.min.js"></script>
     <!-- build:js(client) app/vendor.js -->
       <!-- bower:js -->
@@ -61,8 +67,12 @@
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
       <script src="bower_components/d3/d3.js"></script>
       <script src="bower_components/restangular/dist/restangular.js"></script>
+      <script src="bower_components/medium-editor/dist/js/medium-editor.js"></script>
+      <script src="bower_components/angular-medium-editor/dist/angular-medium-editor.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
+        <script src="assets/vendor/redactor/redactor.js"></script>
+
 
         <!-- build:js({.tmp,client}) app/app.js -->
         <script src="app/app.js"></script>
@@ -77,13 +87,27 @@
           <script src="app/main/main.js"></script>
           <script src="app/topic/topic.controller.js"></script>
           <script src="app/topic/topic.js"></script>
+          <script src="app/topics/topics.controller.js"></script>
+          <script src="app/topics/topics.js"></script>
+          <script src="components/apiservices/services.documents.js"></script>
           <script src="components/apiservices/services.topics.js"></script>
           <script src="components/auth/auth.service.js"></script>
           <script src="components/auth/user.service.js"></script>
+          <script src="components/collabTextEditor/tEdit.directive.js"></script>
+          <script src="components/collabTextEditor/tEdit.directive.old.js"></script>
+          <script src="components/collabTextEditor/tEditTest.controller.js"></script>
+          <script src="components/collabTextEditor/tEditTest.controller.old.js"></script>
+          <script src="components/collabTextEditor/tEditTest.js"></script>
+          <script src="components/directives/caretPosition.js"></script>
+          <script src="components/directives/redactor.js"></script>
+          <script src="components/directives/sanitizer.js"></script>
           <script src="components/directives/utils.js"></script>
           <script src="components/mongoose-error/mongoose-error.directive.js"></script>
           <script src="components/navbar/navbar.controller.js"></script>
+          <script src="components/redactor/redactor.js"></script>
           <script src="components/socket/socket.service.js"></script>
+          <script src="components/topic/notifications/notifications.controller.js"></script>
+          <script src="components/topic/notifications/notifications.directive.js"></script>
           <script src="components/topicview/topicConnectNodes/topic.connectnode.directive.js"></script>
           <script src="components/topicview/topicsidebar/topicsidebar.directive.js"></script>
           <script src="components/topicview/topicview.directive.js"></script>

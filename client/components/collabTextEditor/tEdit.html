@@ -1,0 +1,19 @@
+<div class="document">
+	<div class="pgContainer" locked="false"  ng-repeat="paragraphs in TestEdit.doc ">
+		<div id="pg-{{$index}}" class="pg" ng-update="update()" in="{{$index}}"  ng-model="paragraphs.pg"  redactor></div>
+	</div>
+</div>
+
+
+
+
+
+<!-- <div class="document">
+<article  keypress-pg>
+	<div class="pg"  ng-repeat="paragraphs in TestEdit.doc">
+		<div name="" backspace-last="joinLastParagraph(this)"  ng-focus="lockItem($event)" ng-change="update()" ng-enter="newPg(this, $event)" ng-model="paragraphs.value" strip-br="true"  contenteditable
+ng-bind-html="paragraphs.pg"
+		></div>
+	</div>
+</article>
+</div> -->

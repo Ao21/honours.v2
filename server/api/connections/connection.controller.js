@@ -31,10 +31,20 @@ exports.show = function(req, res) {
 
 // Creates a new thing in the DB.
 exports.create = function(req, res) {
-  Connection.create(req.body, function(err, connection) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, connection);
-  });
+  Connection.find({'source':req.body.source,'target':req.body.target},function(err, docs){
+    if(err){
+      console.log(err);
+    }
+    if(docs.length===0){
+      Connection.create(req.body, function(err, connection) {
+        if(err) { return handleError(res, err); }
+        return res.json(201, connection);
+      });
+    }
+    else{
+      return res.send(400,'Connection Already Exists');
+    }
+  })
 };
 
 // Updates an existing thing in the DB.

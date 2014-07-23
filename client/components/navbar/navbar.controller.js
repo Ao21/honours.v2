@@ -5,6 +5,9 @@ angular.module('honoursApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    },{
+      'title': 'Topics',
+      'link': '/topics'
     }];
 
     $scope.isCollapsed = true;

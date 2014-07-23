@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('honoursApp').directive('topicSidebar', function($http) {
+angular.module('honoursApp').directive('topicsSidebar', function($http) {
     return {
         restrict: 'E',
-        controller: 'TopicCtrl',
+        controller: 'TopicsCtrl',
         templateUrl: 'components/topicview/topicsidebar/topicsidebar.html',
         link: function(scope, element, attrs, ctrl) {
 

@@ -10,7 +10,7 @@
     "bootstrap": "~3.1.1",
     "angular-resource": ">=1.2.*",
     "angular-cookies": ">=1.2.*",
-    "angular-sanitize": ">=1.2.*",
+    "angular-sanitize": "~1.2.20",
     "angular-bootstrap": "~0.11.0",
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1",
@@ -18,10 +18,14 @@
     "angular-ui-router": "~0.2.10",
     "d3": "~3.4.10",
     "nucleus-angular-iconic": "*",
-    "restangular": "~1.4.0"
+    "restangular": "~1.4.0",
+    "angular-medium-editor": "*"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
     "angular-scenario": ">=1.2.*"
+  },
+  "resolutions": {
+    "jquery": "~2.1.1"
   }
 }

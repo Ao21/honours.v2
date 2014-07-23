@@ -10,7 +10,7 @@
 }
 
 .link {
-    stroke: #999;
+    stroke: rgb(31, 119, 180);
     stroke-opacity: .6;
 }
 
@@ -21,6 +21,11 @@ topic-view {
     position: absolute;
     overflow: hidden;
     top: 0;
+    transition: 1s transform;
+}
+
+topic-view.slideOut {
+    transform: translateX(-100%);
 }
 
 g {

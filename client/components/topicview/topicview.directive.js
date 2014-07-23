@@ -1,20 +1,20 @@
 'use strict';
 
-angular.module('honoursApp').directive('topicView', function($http, socket, $timeout, TopicServices) {
+angular.module('honoursApp').directive('topicView', function($http, socket, $timeout, TopicServices, $state) {
     return {
         restrict: 'E',
-        controller: 'TopicCtrl',
+        controller: 'TopicsCtrl',
         templateUrl: 'components/topicview/topicview.html',
         link: function(scope, element, attrs, ctrl) {
 
 
             scope.tVDirectiveAddNode = function() {
-                console.log('added');
+                //console.log('added');
             }
 
 
             function checkKey() {
-                console.log();
+                //console.log();
             }
 
 
@@ -141,7 +141,7 @@ angular.module('honoursApp').directive('topicView', function($http, socket, $tim
                 }
                 else{
                      d3.select(d.parentNode).attr("class",null);
-                    console.log(d);
+                    //console.log(d);
 
                 }
 
@@ -289,6 +289,14 @@ angular.module('honoursApp').directive('topicView', function($http, socket, $tim
                 n.append("circle")
                     .on("click", function(d) {
                         clickNode(d);
+                    })
+                    .on("dblclick", function(d) {
+                        colaObj.stop();
+                        $('topic-view').addClass('slideOut');
+                        $timeout(function(){
+                            $state.go('topic',d);
+                        },200)
+                        
                     })
                     .on("contextmenu", function(d, index) {
                         //handle right click

@@ -42,6 +42,10 @@ angular.module('honoursApp')
         });
       },
 
+      emitMessages: function(modelName,item){
+        socket.emit(modelName,item)
+      },
+
       /**
        * Register listeners to sync an array with updates on a model
        *

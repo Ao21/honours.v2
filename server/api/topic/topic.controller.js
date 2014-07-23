@@ -11,6 +11,7 @@
 
 var _ = require('lodash');
 var Topic = require('./topic.model');
+var Tracks = require('../track/track.controller');
 
 // Get list of things
 exports.index = function(req, res) {
@@ -42,6 +43,8 @@ exports.create = function(req, res) {
         if (err) {
             return handleError(res, err);
         }
+        
+        Tracks.iCreate({'type':'Topic','action':'created','userId':req.user._id,'attachedTo':node._id});
         return res.json(201, node);
     });
 };

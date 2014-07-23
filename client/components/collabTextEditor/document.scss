@@ -1,0 +1,29 @@
+.document {
+    .pgContainer {
+        position: relative;
+        &:before {
+            content: "";
+            transition: 0.2s all;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background-color: green;
+            z-index: 9999;
+        }
+        &.editing:before {
+            height: 100%;
+            width: 5px;
+        }
+    }
+    .pg {
+        border: none;
+        width: 100%;
+        padding: 10px 20px;
+        p {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+    }
+}
