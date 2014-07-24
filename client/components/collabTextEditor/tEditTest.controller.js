@@ -59,6 +59,26 @@ var TestEditCtrl = function($scope, $http, socket, TopicServices,$rootScope) {
         pg: '“We are all ready here. We are prepared to receive the bodies but everything depends on getting an agreement” with the rebels, Mr. Baluta told reporters on Monday.',
         type: 'paragraph',
         pgId:9
+    }, {
+        pg: 'A larger team of forensic experts, including 23 from the Netherlands, two from Germany, two from the United States, and one from Britain, arrived in Kharkiv early Monday.',
+        type: 'paragraph',
+        pgId:5
+    }, {
+        pg: '“We are here to get the bodies back to their countries and to their families. We will try our utmost to do this as quickly as possible,” Michel Oz, the group’s Dutch coordinator, said. But he added that it was still unclear whether the separatist rebels who control the crash site and the nearby railway station at Torez would allow a train loaded with corpses to leave for Kharkiv. “We have no information,” he said.',
+        type: 'paragraph',
+        pgId:6
+    }, {
+        pg: 'Mr. Oz said the international team now assembling in Kharkiv included experts from the Federal Bureau of Investigation, a unit of the German federal police that handles the identification of disaster victims, as well as officials from Britain and Australia. Malaysia is also due to join the effort.',
+        type: 'paragraph',
+        pgId:7
+    }, {
+        pg: 'An Australian official who declined to be identified voiced dismay that the bodies were effectively being held hostage by separatist rebels. “We have no idea what is going on and when we can get the bodies,” he said. Igor Baluta, the governor of Kharkiv, complained that the separatists were frustrating efforts to identify corpses and return them to their families.',
+        type: 'paragraph',
+        pgId:8
+    }, {
+        pg: '“We are all ready here. We are prepared to receive the bodies but everything depends on getting an agreement” with the rebels, Mr. Baluta told reporters on Monday.',
+        type: 'paragraph',
+        pgId:9
     }];
 
     $scope.joinLastParagraph = function(currentText) {
