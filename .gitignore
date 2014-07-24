@@ -3,5 +3,6 @@ public
 .tmp
 .sass-cache
 client/bower_components
+dist
 /server/config/local.env.js
 /client/assets/vendor/iconic
