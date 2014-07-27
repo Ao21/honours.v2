@@ -73,7 +73,7 @@
                           var prevElement = cIndex - 1;
                               if (e.which === 8 && cursorParentIndex(cEl[0]) == 0) {
                                   e.preventDefault();
-                                  thisElement = this.get();
+                                  var thisElement = this.get();
                                   removeParagraph(e, thisElement);
                               }
                           if (e.which == 38 && isTopBorder(cEl[0])) {

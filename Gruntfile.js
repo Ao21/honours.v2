@@ -145,7 +145,6 @@ module.exports = function (grunt) {
             '!<%= yeoman.dist %>/.git*',
             '!<%= yeoman.dist %>/.openshift',
             '!<%= yeoman.dist %>/Procfile',
-            '!<%= yeoman.dist %>/public/assets/vendor/iconic/*'
           ]
         }]
       },
@@ -338,7 +337,7 @@ module.exports = function (grunt) {
             'bower_components/**/*',
             'assets/images/{,*/}*.{webp}',
             'assets/fonts/**/*',
-            'assets/vendor/*.js',
+            'assets/vendor/**/*',
             'index.html'
           ]
         }, {
