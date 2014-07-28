@@ -1,6 +1,7 @@
 <div class="document">
-	<div class="pgContainer" locked="false"  ng-repeat="paragraphs in TestEdit.doc ">
-		<div id="pg-{{$index}}" class="pg" ng-update="update()" in="{{$index}}"  ng-model="paragraphs.pg"  redactor></div>
+	<div class="pgContainer" ng-class="{true:'locked'}[paragraphs.locked]" locked="{{paragraphs.locked}}" currentUser="" ng-repeat="paragraphs in TestEdit.doc ">
+		<div class="preventClick"></div>
+		<div id="pg-{{$index}}" class="pg" ng-click="checkIfInUse($event)" ng-update="update()" in="{{$index}}"  ng-model="paragraphs.pg"  redactor></div>
 	</div>
 </div>
 

@@ -36,7 +36,6 @@ angular.module('honoursApp')
 
       getUpdate: function(modelName, cb){
         cb = cb || angular.noop;
-
         socket.on(modelName + ':save', function (item) {
           cb(item);
         });
@@ -44,6 +43,12 @@ angular.module('honoursApp')
 
       emitMessages: function(modelName,item){
         socket.emit(modelName,item)
+      },
+
+      recieveMessage: function(channel, cb){
+        socket.on(channel, function(item){
+          cb(item);
+        })
       },
 
       /**
@@ -87,6 +92,10 @@ angular.module('honoursApp')
           _.remove(array, {_id: item._id});
           cb(event, item, array);
         });
+      },
+
+      unsyncRealtime: function (modelName) {
+        socket.removeAllListeners('realtime:join');
       },
 
       /**

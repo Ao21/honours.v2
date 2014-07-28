@@ -11,7 +11,7 @@ function onDisconnect(socket) {
 }
 
 // When the user connects.. perform this
-function onConnect(socket) {
+function onConnect(socket,socketio) {
   // When the client emits 'info', this listens and executes
   socket.on('info', function (data) {
     console.info('[%s] %s', socket.address, JSON.stringify(data, null, 2));
@@ -21,7 +21,7 @@ function onConnect(socket) {
   require('../api/thing/thing.socket').register(socket);
   require('../api/topic/topic.socket').register(socket);
   require('../api/connections/connection.socket').register(socket);
-  require('../api/document/document.socket').register(socket);
+  require('../api/document/document.socket').register(socket, socketio);
 }
 
 module.exports = function (socketio) {
@@ -54,7 +54,7 @@ module.exports = function (socketio) {
     });
 
     // Call onConnect.
-    onConnect(socket);
+    onConnect(socket,socketio);
     console.info('[%s] CONNECTED', socket.address);
   });
 };

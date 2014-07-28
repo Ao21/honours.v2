@@ -6,7 +6,7 @@ angular.module('honoursApp')
       .state('test', {
         url: '/test',
         templateUrl: 'components/collabTextEditor/tEdit.html',
-        controller: 'TestEditCtrl',
+        controller: 'DocumentCtrl',
         controllerAs: 'TestEdit'
       });
   });

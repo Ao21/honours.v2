@@ -1,4 +1,4 @@
-  angular.module('honoursApp').directive('redactor', function($http, socket, $timeout, TopicServices, $state) {
+  angular.module('honoursApp').directive('redactor', function($http, socket, $timeout, TopicServices, $state, $rootScope) {
       return {
           restrict: 'AE',
           require: '?ngModel',
@@ -19,6 +19,9 @@
               angular.extend(options, additionalOptions);
 
 
+              
+
+
 
 
               // put in timeout to avoid $digest collision.  call render() to
@@ -28,6 +31,8 @@
                       toolbar: false,
                       focus: true,
                       deniedTags: ['blockquote', 'div','span'],
+
+
 
                       enterCallback: function(e) {
                           
@@ -42,17 +47,20 @@
                       },
                       blurCallback: function(e) {
                             updateModel(this.get());
+                            scope.update(e);
+
+                            scope.unlockItem(e);
                            $_element.parent().parent().removeClass('editing')
                            //Compute Diff Match and Broadcast
-                           scope.computeDiff(this.get(),scope);
+                           //scope.computeDiff(this.get(),scope);
 
                       },
                       focusCallback: function(e) {
                           //updateModel(this.get());
+                          scope.lockItem(e);
                            $_element.parent().parent().addClass('editing');
                            //Store Original Text for Diff Matching
-                          scope.storeOriginalDiff(this.get(),scope);
-                          scope.update();
+                          //scope.storeOriginalDiff(this.get(),scope);
 
 
 
@@ -71,14 +79,14 @@
                           var next = angular.element('#pg-' + nextIndex);
                           
                           var prevElement = cIndex - 1;
-                              if (e.which === 8 && cursorParentIndex(cEl[0]) == 0) {
+                              if (e.which === 8 && cursorParentIndex(cEl[0]) == 0 && prev.parent().parent()[0].attributes.locked.value!='true' ) {
                                   e.preventDefault();
                                   var thisElement = this.get();
                                   removeParagraph(e, thisElement);
                               }
-                          if (e.which == 38 && isTopBorder(cEl[0])) {
+                          if (e.which == 38 && isTopBorder(cEl[0]) && prev.parent().parent()[0].attributes.locked.value!='true') {
                               //var prev = $(element).parent().parent().prev().children('div').children('div');
-                              //console.log(prev);
+                              console.log( prev[0].attributes.contenteditable.value);
                               
                               var getDistanceToCaret = distanceToCaret($_element, cursorParentIndex(cEl[0]));
                               var lineNumber = prev.lines().length;
@@ -86,18 +94,18 @@
                               setCaret(prev.get(0), caretPosition);
                               e.preventDefault();
 
-                          } else if (e.which == 40 && isBottomBorder(cEl[0])) {
+                          } else if (e.which == 40 && isBottomBorder(cEl[0]) && next.parent().parent()[0].attributes.locked.value!='true') {
                               e.preventDefault();
                                   var getDistanceToCaret = distanceToCaret($_element,cursorParentIndex(cEl[0]));
                                   var caretPosition = getCaretViaWidth(next, 1, getDistanceToCaret);
                                   next.focus();
                                   setCaret(next.get(0), caretPosition);
-                          } else if (e.which == 37 && cursorParentIndex(cEl[0]) == 0) {
+                          } else if (e.which == 37 && cursorParentIndex(cEl[0]) == 0 && prev.parent().parent()[0].attributes.locked.value!='true') {
                               e.preventDefault();
                                   prev.focus();
                                   setCaret(prev.get(0), prev.text().length);
                               // if end of paragraph and right arrow
-                          } else if (e.which == 39 && cursorParentIndex(cEl[0]) == $(element).text().length) {
+                          } else if (e.which == 39 && cursorParentIndex(cEl[0]) == $(element).text().length && next.parent().parent()[0].attributes.locked.value=='false') {
                               e.preventDefault();
                               next.focus();
                               //$(element).parent().parent().next().children('div').children('div').focus();
@@ -111,7 +119,15 @@
                 $_element.redactor('set', ngModel.$viewValue || '');
                 //$_element.chromeinsertfix();
 
+                 $rootScope.$on('docs', function(event, data){
+                   $_element.redactor('set', ngModel.$viewValue || '');
+                })
+
+
               })
+
+             
+              
 
 
 
@@ -181,10 +197,13 @@
                   scope.$apply(function() {
                       scope.$parent.TestEdit.doc.splice(cIndex, 1);
                   })
+
+                  
                   //angular.element('#pg-' + prevElement).redactor('focus');
                   var cur = angular.element('#pg-' + prevElement).redactor('getObject');
                   //This is touchy
                   angular.element('#pg-' + prevElement).redactor('setCaret', cur.$editor.get(0), len);
+                  //scope.updateDocs();
 
               }
 
@@ -210,10 +229,11 @@
                           end = cEl.innerText.substring(caratOffset);
                           
                       $_element.redactor('set', start);
+                      current.pg = start;
 
 
 
-                      joinLastParagraph(textPastCursor, end);
+                      joinLastParagraph(textPastCursor, end, start);
                   }
 
 
@@ -221,7 +241,9 @@
               }
 
 
-              var joinLastParagraph = function(textPastCursor, end) {
+
+
+              var joinLastParagraph = function(textPastCursor, end, start) {
                   var t = textPastCursor;
                   $_element = angular.element(element);
                   var cIndex = parseInt(attrs.in) + 1;
@@ -232,7 +254,7 @@
                   item.pg = end;
 
                  
-                  scope.joinPara(cIndex,0,item);
+                  scope.joinPara(cIndex,0,item,start);
                  
                   var cIndex = parseInt(attrs.in);
                   var nextEl = cIndex + 1;
