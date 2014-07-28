@@ -66,6 +66,7 @@
 
                       },
                       keyupCallback: function(e) {
+                          this.checkForSpan();
                           updateModel(this.get());
                       },
                       keydownCallback: function(e) {

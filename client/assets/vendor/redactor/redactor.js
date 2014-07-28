@@ -821,6 +821,22 @@
 			this.sync();
 
 		},
+		checkForSpan: function() {
+			  this.$editor.on("DOMNodeInserted", $.proxy(function(e) {
+			  	console.log('hi');
+			    if (e.target.tagName == "SPAN" && e.target.className != "redactor-selection-marker") {
+			      var helper = $("<b>helper</b>");
+
+			      $(e.target).before(helper);
+
+			      helper.after($(e.target).contents());
+			      helper.remove();
+
+			      $(e.target).remove();
+			    }
+
+			  }, this));
+			},
 		setFullpageOnInit: function(html)
 		{
 			this.fullpageDoctype = html.match(/^<\!doctype[^>]*>/i);
