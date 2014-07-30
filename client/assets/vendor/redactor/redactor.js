@@ -5602,6 +5602,10 @@
 
 			return caretOffset;
 		},
+		getCaretOffsetParent: function (element)
+		{
+			//var range = rangy.createRange();
+		},
 		getCaretOffsetRange: function()
 		{
 			return new Range(this.getSelection().getRangeAt(0));

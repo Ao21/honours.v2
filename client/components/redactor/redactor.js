@@ -28,8 +28,8 @@
               // set the initial value.
               $timeout(function() {
                   editor = $_element.redactor({
-                      toolbar: false,
-                      focus: true,
+                      toolbar: true,
+                      focus: false,
                       deniedTags: ['blockquote', 'div','span'],
 
 
@@ -41,6 +41,7 @@
                           if($(c.parentNode).hasClass('pg')){
                             e.preventDefault();
                             var text = this.getBlock();
+                            console.log(text);
                             createNewParagraph(this, element, c, e);
                           }
                           
@@ -48,7 +49,7 @@
                       blurCallback: function(e) {
                             updateModel(this.get());
                             scope.update(e);
-
+                            $_element.parent().children('.redactor_toolbar').hide();
                             scope.unlockItem(e);
                            $_element.parent().parent().removeClass('editing')
                            //Compute Diff Match and Broadcast
@@ -57,7 +58,10 @@
                       },
                       focusCallback: function(e) {
                           //updateModel(this.get());
+                          console.log('hi');
                           scope.lockItem(e);
+
+                          $_element.parent().children('.redactor_toolbar').show();
                            $_element.parent().parent().addClass('editing');
                            //Store Original Text for Diff Matching
                           //scope.storeOriginalDiff(this.get(),scope);
@@ -211,14 +215,27 @@
               var createNewParagraph = function(e, element, text, eb) {
                   var textPastCursor = $_element.redactor('getCurrent');
                   var caratOffset = $_element.redactor('getCaretOffset', textPastCursor);
-
+                  var caratOffset = $_element.redactor('selectionSave');
                   var cIndex = parseInt(attrs.in);
                   var current = scope.$parent.TestEdit.doc[cIndex];
                   var cEl = angular.element('#pg-' + cIndex).get(0);
+                  console.log(cEl.innerHTML)
+                  var htmlOffset = cEl.innerHTML.substring(0,caratOffset);
+                  //htmlOffset = htmlOffset.match(regex),"").join().length;
+
+
+
+
+
+
+
+
+                  
+
 
                   if (caratOffset === 0) {
-                      var start = cEl.innerText.substring(0, caratOffset),
-                          end = cEl.innerText.substring(caratOffset);
+                      var start = cEl.innerHTML.split('<span id="selection-marker-1" class="redactor-selection-marker">​</span>')[0],
+                          end = cEl.innerHTML.split('<span id="selection-marker-1" class="redactor-selection-marker">​</span>')[1];
                           
                       $_element.redactor('set', start);
 
@@ -226,8 +243,8 @@
 
                       joinLastParagraph(textPastCursor, end);
                   } else {
-                      var start = cEl.innerText.substring(0, caratOffset),
-                          end = cEl.innerText.substring(caratOffset);
+                      var start = cEl.innerHTML.split('<span id="selection-marker-1" class="redactor-selection-marker">​</span>')[0],
+                          end = cEl.innerHTML.split('<span id="selection-marker-1" class="redactor-selection-marker">​</span>')[1];
                           
                       $_element.redactor('set', start);
                       current.pg = start;

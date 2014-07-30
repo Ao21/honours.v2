@@ -8,6 +8,9 @@ angular.module('honoursApp')
     },{
       'title': 'Topics',
       'link': '/topics'
+    },{
+      'title': 'Test',
+      'link': '/test'
     }];
 
     $scope.isCollapsed = true;

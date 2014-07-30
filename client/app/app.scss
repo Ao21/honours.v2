@@ -22,6 +22,10 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     }
 }
 
+body {
+    font-family: "proxima-nova";
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'account/login/login.scss';
@@ -32,6 +36,9 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'collabTextEditor/document.scss';
 @import 'iconic/iconic.scss';
 @import 'redactor/redactor.scss';
+@import 'sharedspace/sharedspace.scss';
+@import 'sharedspace/toolbar/toolbar.scss';
+@import 'topic/add/add.scss';
 @import 'topic/notifications/notifications.scss';
 @import 'topicview/topicConnectNodes/topic.connectnode.scss';
 @import 'topicview/topicsidebar/topicssidebar.scss';

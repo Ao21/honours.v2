@@ -1,0 +1,40 @@
+.topic__addconcept {
+    transition: 1s transform;
+    position: absolute;
+    left: -999999px;
+    top: 50%;
+    height: 50%;
+    width: 400px;
+    height: 400px;
+    margin-left: -200px;
+    margin-top: -200px;
+    padding: 25px;
+    transform: scale(0);
+    background-color: #333;
+    border-radius: 50%;
+    color: white;
+    .col-md-6:first-child {
+        .select {
+            width: 70px;
+            float: left;
+            margin-left: 60px;
+            p {
+                text-align: center;
+            }
+        }
+    }
+    .iconic {
+        transition: 0.3s transform;
+        width: 70px;
+        height: 85px;
+    }
+    .iconic:hover {
+        transform: scale(1.1);
+    }
+}
+
+.topic__addconcept.open {
+    display: block;
+    left: 50%;
+    transform: scale(1);
+}

@@ -1,0 +1,15 @@
+<div class="sharedSpace">
+	<shared-space-toolbar></shared-space-toolbar>
+    <div class="movinglayer">
+        <div class="boardContainer">
+            <div class="viewPort board">
+                <div class="boardScroller" draggablezoomable>
+                    <div class="dragArea"></div>
+                    <div style="transform: translate3d(-4500px, -2500px, 0);" class="boardArea">
+                    	<shared-space-object posX={{object.posX}} posY={{object.posY}} ng-repeat="object in objectList" style=""></shared-space-object>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

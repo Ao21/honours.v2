@@ -1,3 +1,9 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<h1></h1>
-<notifications topicid="{{Topic.params.id}}"></notifications>
+
+<div class="main">
+	<h1 ng-click="Topic.getTopic()">Test</h1>
+	<topic-add></topic-add>
+</div>
+<div class="sidebar--right">
+	<notifications topicid="{{Topic.params.id}}"></notifications>
+</div>

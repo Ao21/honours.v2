@@ -11,10 +11,12 @@ var TopicCtrl = function($scope, $http, socket,$stateParams, TopicServices) {
         this.params = $stateParams;
 
 
+    
 
 
     $scope.getTopic = function(){
     }
+
     $scope.connectTopics = function(){
 
     }
@@ -22,7 +24,7 @@ var TopicCtrl = function($scope, $http, socket,$stateParams, TopicServices) {
 }
 
 TopicCtrl.prototype.getTopic = function(){
-	
+    this.$scope.open();
 }
 
 TopicCtrl.prototype.connectTopics = function(){

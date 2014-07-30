@@ -1,13 +1,16 @@
 .document {
-    .pgContainer[locked="true"]{
+    .redactor_toolbar {
+        display: none;
+    }
+    .pgContainer[locked="true"] {
         pointer-events: none;
-        .preventClick{
-            position:absolute;
-            left:0;
-            top:0;
-            width:100%;
-            height:100%;
-            z-index:999999;
+        .preventClick {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999999;
         }
     }
     .pgContainer {
@@ -20,18 +23,17 @@
             left: 0;
             height: 100%;
             width: 0;
-           
             z-index: 9999;
         }
         &.editing:before {
             height: 100%;
-             background-color: green;
+            background-color: green;
             width: 5px;
         }
         &.locked:before {
             height: 100%;
             width: 5px;
-             background-color: red;
+            background-color: red;
         }
     }
     .pg {
@@ -44,4 +46,3 @@
         }
     }
 }
-
