@@ -31,7 +31,6 @@ var DocumentCtrl = function($scope, $http, socket, TopicServices, $rootScope, Au
     //Lock Paragraphs Based On User Use
 
     socket.recieveMessage('realtime:updateLocks', function(data) {
-        console.log(data);
         var getUserIndex = _.findIndex(_this.currentUsers, {
             userId: data.userId
         });
@@ -198,7 +197,6 @@ var DocumentCtrl = function($scope, $http, socket, TopicServices, $rootScope, Au
 
 
     $scope.update = function(e) {
-        //console.log('gi');
         _this.updateDoc();
     }
 

@@ -86,6 +86,7 @@ function cursorIndex() {
         var hiddenElement = this.clone(); //copies font settings and width
         hiddenElement.empty(); //clear text
         hiddenElement.css("visibility", "hidden");
+        hiddenElement.css("width", this.width()); //so width can be measured
 
         jQuery('body').append(hiddenElement); // height doesn't exist until inserted into document
 
@@ -170,7 +171,6 @@ function getCaretViaWidth(textElement, lineNo, width) {
     hiddenElement.css("visibility", "hidden");
     hiddenElement.css("width", "auto"); //so width can be measured
     hiddenElement.css("display", "inline-block"); //so width can be measured
-
     jQuery('body').append(hiddenElement); // doesn't exist until inserted into document
 
     if (width == 0) { //if width is 0 index is at start

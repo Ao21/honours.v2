@@ -1,0 +1,18 @@
+.sharedspace__sidebar {
+    position: absolute;
+    right: 0;
+    width: 0;
+    height: 100%;
+    transition: 0.6s width;
+    background-color: white;
+    .sharedspace__sidebar--option {
+        transition: 1s all;
+        opacity: 0;
+    }
+    &.open {
+        width: 60%;
+        .sharedspace__sidebar--option {
+            opacity: 1;
+        }
+    }
+}

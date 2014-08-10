@@ -26,7 +26,13 @@
     "connect-mongo": "^0.4.1",
     "socket.io": "~0.9.16",
     "socketio-jwt": "^2.0.2",
-    "redis": "^0.11.0"
+    "redis": "^0.11.0",
+    "aws-sdk": "^2.0.11",
+    "mammoth": "^0.3.8",
+    "busboy": "^0.2.8",
+    "connect-busboy": "0.0.1",
+    "textract": "^0.12.0",
+    "unzip": "^0.1.9"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

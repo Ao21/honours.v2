@@ -12,6 +12,8 @@ var SharedSpaceCtrl = function($scope, $http, socket, TopicServices, $rootScope,
     this.connectVisible = false;
 
 
+    this.spaceId = 'spaceID010101';
+
 
 }
 
@@ -19,6 +21,13 @@ var SharedSpaceCtrl = function($scope, $http, socket, TopicServices, $rootScope,
 SharedSpaceCtrl.prototype.updateDoc = function(orig, updated, pIndex) {
 
 
+
+}
+
+
+SharedSpaceCtrl.prototype.returnId = function() {
+
+	return 'spaceID010101';
 
 }
 

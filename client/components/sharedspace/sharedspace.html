@@ -4,12 +4,16 @@
         <div class="boardContainer">
             <div class="viewPort board">
                 <div class="boardScroller" draggablezoomable>
-                    <div class="dragArea"></div>
-                    <div style="transform: translate3d(-4500px, -2500px, 0);" class="boardArea">
-                    	<shared-space-object posX={{object.posX}} posY={{object.posY}} ng-repeat="object in objectList" style=""></shared-space-object>
+                    
+                    
+                    <div filedrop style="transform: translate3d(-4500px, -2500px, 0);" class="boardArea">
+                    <svg class="svgLayer"></svg>
+                    	<shared-space-object posX={{object.posx}} posY={{object.posy}} index="{{$index}}" ng-repeat="object in objectList track by object.id" style=""></shared-space-object>
                     </div>
+                    <div class="dragArea"></div>
                 </div>
             </div>
         </div>
     </div>
+    <shared-space-sidebar></shared-space-sidebar>
 </div>

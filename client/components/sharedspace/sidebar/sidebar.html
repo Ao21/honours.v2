@@ -1,0 +1,8 @@
+<div class='sharedspace__sidebar' ng-switch="sharedSpaceSidebarView">
+	<div ng-switch-when="document">
+		<div class="sharedspace__sidebar--option">
+			<h1>New Document</h1>
+			<collaborative-text-edit ng-controller="DocumentCtrl as TestEdit"></collaborative-text-edit>
+		</div>
+	</div>
+</div>

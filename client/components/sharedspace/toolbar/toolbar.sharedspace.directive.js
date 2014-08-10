@@ -8,9 +8,11 @@ angular.module('honoursApp').directive('sharedSpaceToolbar', function($http, soc
         templateUrl: 'components/sharedspace/toolbar/toolbar.html',
         link: function(scope, element, attrs, ctrl) {
 
-        	
-
         	scope.addDocument = function(){
+                ctrl.$scope.openToolbar('document');
+            }
+
+        	scope.addTitle = function(){
         		ctrl.$scope.addObject({name:'newItem'});
         	}
 

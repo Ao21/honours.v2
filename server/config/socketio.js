@@ -20,6 +20,7 @@ function onConnect(socket,socketio) {
   // Insert sockets below
   require('../api/thing/thing.socket').register(socket);
   require('../api/topic/topic.socket').register(socket);
+  require('../api/object/object.socket').register(socket, socketio);
   require('../api/connections/connection.socket').register(socket);
   require('../api/document/document.socket').register(socket, socketio);
 }

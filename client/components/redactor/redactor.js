@@ -95,6 +95,7 @@
                               
                               var getDistanceToCaret = distanceToCaret($_element, cursorParentIndex(cEl[0]));
                               var lineNumber = prev.lines().length;
+                              console.log(getDistanceToCaret);
                               var caretPosition = getCaretViaWidth(prev, lineNumber, getDistanceToCaret);
                               setCaret(prev.get(0), caretPosition);
                               e.preventDefault();

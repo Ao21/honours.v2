@@ -41,6 +41,12 @@ var all = {
     }
   },
 
+  aws:{
+    AccessKeyId:"AKIAJNP65ZSHXTFSXZJQ",
+    SecretKey: "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",
+    bucket:"honours"
+  },
+
   facebook: {
     clientID:     process.env.FACEBOOK_ID || 'id',
     clientSecret: process.env.FACEBOOK_SECRET || 'secret',

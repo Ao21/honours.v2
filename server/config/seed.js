@@ -8,6 +8,7 @@
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var Topic = require('../api/topic/topic.model');
+var Obj = require('../api/object/object.model');
 var Connection = require('../api/connections/connection.model');
 var Track = require('../api/track/track.model');
 
@@ -33,28 +34,6 @@ Thing.find({}).remove(function() {
     });
 });
 
-User.find({}).remove(function() {
-    User.create({
-        provider: 'local',
-        name: 'Test User',
-        email: 'test@test.com',
-        password: 'test'
-    },{
-        provider: 'local',
-        role: 'admin',
-        name: 'Ro Brett',
-        email: 'ro.brett@gmail.com',
-        password: 'Ao21Ao21'
-    },{
-        provider: 'local',
-        role: 'admin',
-        name: 'Admin',
-        email: 'admin@admin.com',
-        password: 'admin'
-    }, function() {
-        console.log('finished populating users');
-    });
-});
 
 Track.find({}).remove(function(){
     console.log('remove all tracks')
@@ -66,6 +45,10 @@ Connection.find({}).remove(function(){
 
 
 Topic.find({}).remove(function(){
+    console.log('removed all');
+})
+
+Obj.find({}).remove(function(){
     console.log('removed all');
 })
 

@@ -11,7 +11,12 @@ var SharedSpaceTest = function($scope, $http, socket, TopicServices, $rootScope,
 
     this.connectVisible = false;
 
+    this.spaceId = 'spaceID010101';
 
+    socket.emitMessages('sharedspace:join', {
+		        userId: Auth.getCurrentUser()._id,
+		        list: 'spaceID010101',
+		    });
 
 
 }
