@@ -1,0 +1,26 @@
+<div class="commentWindow move" >
+	<div class="circ" ng-click="openComment()">
+		<div class="inset" >
+			<h3>{{comments.length}}</h3>
+		</div>
+	</div>
+	<div class="commentList" ng-class="{open:commentOpen}">
+			<div ng-click="closeComment()" class="closeCommment"><img  class="iconic" nag-iconic data-src="assets/vendor/iconic/svg/smart/circle-x.svg" /></div>
+
+	<div class="comment c{{$index}}" ng-repeat="comment in comments track by $index">
+
+		<img src="{{comment.user.google.picture}}" alt="">
+		<img ng-hide="{{comment.user.google.picture.length}}" src="assets/images/profile.jpg" alt="">
+		<div class="text">
+			<h5>{{comment.user.name}} <span>{{comment.created|date}}</h5>
+			<p>{{comment.content}}</p>
+		</div>
+		
+	</div>
+
+	<h4 ng-hide="comments.length">Start a conversation.</h4>
+		<textarea msd-elastic name="" id="" ng-model="comment">Leave a Comment</textarea>
+		<button class="delete" ng-click="deleteComment()">Delete Comment</button>
+		<button ng-click="attachComment()">Add Comment</button>
+	</div>
+</div>

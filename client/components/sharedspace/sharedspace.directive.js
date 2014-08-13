@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('honoursApp').directive('sharedSpace', function($http, socket, $timeout, TopicServices, $state, ObjectServices) {
+angular.module('honoursApp').directive('sharedSpace', function($http, socket, $timeout, TopicServices, $state, ObjectServices,CommentServices) {
     return {
         restrict: 'E',
         replace:true,
@@ -8,7 +8,9 @@ angular.module('honoursApp').directive('sharedSpace', function($http, socket, $t
         templateUrl: 'components/sharedspace/sharedspace.html',
         link: function(scope, element, attrs, ctrl) {
 
-        	scope.objectList = [];
+            scope.objectList = [];
+            scope.commentList = [];
+            scope.commentMode = false;
 
             /*$(element[0]).mousedown(function (e) {
                    
@@ -56,8 +58,17 @@ angular.module('honoursApp').directive('sharedSpace', function($http, socket, $t
                 scope.objectList =data.array;
             })
 
+            socket.recieveMessage('sharedspace:comment:deleted', function(data) {
+                scope.commentList.splice(data.index,1);
+                scope.commentList =data.array;
+            })
+
             socket.recieveMessage('sharedspace:object:updateAll', function(data) {
                 scope.objectList =data;
+            })
+
+            socket.recieveMessage('sharedspace:comment:updateAll', function(data) {
+                scope.commentList =data;
             })
 
         	
@@ -65,6 +76,11 @@ angular.module('honoursApp').directive('sharedSpace', function($http, socket, $t
         	 ObjectServices.getObjectsBySpace('spaceID010101').then(function(data){
         	 	scope.objectList = data;
         	 });
+
+             CommentServices.getCommentsBySpace('spaceID010101').then(function(data){
+                console.log(data);
+                scope.commentList = data;
+             });
 
 
         	 scope.addShape = function(data){
@@ -76,8 +92,6 @@ angular.module('honoursApp').directive('sharedSpace', function($http, socket, $t
                         list: scope.SharedSpace.spaceId
                     });
                 })
-                
-                
             }
 
 
@@ -89,8 +103,30 @@ angular.module('honoursApp').directive('sharedSpace', function($http, socket, $t
                         list: scope.SharedSpace.spaceId
                     });
             	})
-            	
-            	
+            }
+
+            scope.createComment = function(data){
+                var tempObject = {name:'tempObject',type:'comment', 'spaceId':'spaceID010101','posx': data.posx,'posy':data.posy};
+                CommentServices.create(tempObject).then(function(object){
+                    scope.commentList.push(object);
+                    socket.emitMessages('sharedspace:comment:create', {   
+                        list: scope.SharedSpace.spaceId
+                    });
+                })
+                                scope.commentMode = !scope.commentMode;
+
+            }
+
+            scope.turnOnCommentMode = function(data){
+                scope.commentMode = !scope.commentMode;
+                //var tempObject = {name:'tempObject',type:'commentGroup', 'spaceId':'spaceID010101', attachedTo:''};
+                //scope.objectList.push(object);
+                /*ObjectServices.createComment(tempObject).then(function(object){
+                    scope.objectList.push(object);
+                    socket.emitMessages('sharedspace:object:create', {   
+                        list: scope.SharedSpace.spaceId
+                    });
+                })*/
             }
 
 

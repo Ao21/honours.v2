@@ -7,13 +7,16 @@
                     
                     
                     <div filedrop style="transform: translate3d(-4500px, -2500px, 0);" class="boardArea">
-                    <svg class="svgLayer"></svg>
+                        <svg class="svgLayer"></svg>
                     	<shared-space-object posX={{object.posx}} posY={{object.posy}} index="{{$index}}" ng-repeat="object in objectList track by object.id" style=""></shared-space-object>
+                        <shared-space-object-comment posX={{object.posx}} posY={{object.posy}} index="{{$index}}" ng-repeat="object in commentList track by object.id" style=""></shared-space-object-comment>
+                        <shared-space-comment-mode ng-click="addComment($event)" ng-show="commentMode" class="comment__mode"></shared-space-comment-mode>
                     </div>
                     <div class="dragArea"></div>
                 </div>
             </div>
         </div>
+
     </div>
     <shared-space-sidebar></shared-space-sidebar>
 </div>

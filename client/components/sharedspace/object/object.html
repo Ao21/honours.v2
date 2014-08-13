@@ -1,10 +1,10 @@
-<div class="object" id="obj" ng-class="object.type" resizeable obWidth={{object.width}} obHeight = {{object.height}}>
-	<div class="content" ng-switch="object.type">
+<div class="object" id="obj" ng-class="object.type" resizeable obWidth={{object.width}} obHeight = {{object.height}} ng-switch="object.type">
+	<div class="content" >
 		<div ng-switch-when="image" class="img"style="background-image:url({{object.content}})"></div>
 		<div ng-switch-when="title" class="note" ng-model="object.content" contenteditable="true">Title</div>
 		<div ng-switch-when="shape" class="shape" ><shape-arrow></shape-arrow></div>
 	</div>
-	<div class="control">
+	<div   class="control">
 		<div class="move"><img class="iconic" data-state="intact" nag-iconic data-src="assets/vendor/iconic/svg/smart/move.svg" /></div>
 		<div class="trash"><img class="iconic" data-state="intact" nag-iconic data-src="assets/vendor/iconic/svg/smart/trash.svg" /></div>
 		<div class="settings"><img class="iconic" data-state="intact" nag-iconic data-src="assets/vendor/iconic/svg/smart/settings.svg" /></div>

@@ -37,14 +37,32 @@ exports.register = function(socket, socketio) {
 
     });
 
+    socket.on('sharedspace:comment:delete', function(data) {
+        console.log(data);
+        redis.lset(data.list+'-comments', data.objIndex, 'RME');
+        redis.lrem(data.list+'-comments', 0, 'RME');
+        updateDeleteComment(socketio, data.list, data.index);
+
+    });
+
+
 
     socket.on('sharedspace:object:update', function(data) {
         redis.lset(data.list, data.obj.in, JSON.stringify(data.obj));
         socket.broadcast.emit('sharedspace:object:updates', data.obj);
     });
 
+    socket.on('sharedspace:comment:update', function(data) {
+        redis.lset(data.list+'-comments', data.obj.in, JSON.stringify(data.obj));
+        socket.broadcast.emit('sharedspace:comment:updates', data.obj);
+    });
+
     socket.on('sharedspace:object:create', function(data) {
         updateAll(socketio,data.list)
+    });
+
+    socket.on('sharedspace:comment:create', function(data) {
+        updateAllComments(socketio,data.list)
     });
 
 
@@ -78,6 +96,43 @@ function updateAll(socketio, dataList) {
     })
 }
 
+function updateAllComments(socketio, dataList) {
+    var arr = [];
+    redis.lrange(dataList+'-comments', 0, -1, function(err, replies) {
+        if (err) {
+            return handleError(res, err);
+        }
+        for (var i = 0; i < replies.length; i++) {
+            var r = JSON.parse(replies[i]);
+            r.in = i;
+            arr.push(r);
+        };
+            console.log(arr);
+
+        socketio.sockets.emit('sharedspace:comment:updateAll', arr);
+
+    })
+}
+
+function updateDeleteComment(socketio, dataList, index) {
+    var arr = [];
+    redis.lrange(dataList+'-comments', 0, -1, function(err, replies) {
+        if (err) {
+            return handleError(res, err);
+        }
+        for (var i = 0; i < replies.length; i++) {
+            var r = JSON.parse(replies[i]);
+            r.in = i;
+            arr.push(r);
+        };
+        var obj = {
+            index: index,
+            array: arr
+        }
+        socketio.sockets.emit('sharedspace:comment:deleted', obj);
+
+    })
+}
 
 function updateDelete(socketio, dataList, index) {
     var arr = [];

@@ -16,6 +16,7 @@ module.exports = function(app) {
   app.use('/api/topics', require('./api/topic'));
   app.use('/api/objects', require('./api/object'));
   app.use('/api/tracks', require('./api/track'));
+  app.use('/api/comments', require('./api/comments'));
   app.use('/api/documents', require('./api/document'));
 
   app.route('/api/s3Policy').get(aws.getS3Policy)

@@ -12,6 +12,14 @@ angular.module('honoursApp').directive('sharedSpaceObject', function($http, sock
             socket.recieveMessage('sharedspace:object:updates', function(data) {
                 if (data.id === scope.object.id) {
                     scope.object.content = data.content;
+                    if(data.width||data.height){
+                        element[0].style.webkitTransform =
+                            element[0].style.width =
+                            data.width;
+                         element[0].style.webkitTransform =
+                            element[0].style.height =
+                            data.height;
+                    }
                     element[0].style.webkitTransform =
                         element[0].style.transform =
                         'translate3d(' + data.posx + 'px, ' + data.posy + 'px,0)';
@@ -45,8 +53,6 @@ angular.module('honoursApp').directive('sharedSpaceObject', function($http, sock
             if (attrs.posx === '') {
                 x = (-$('.boardArea').offset().left + angular.element(window).width() / 2) / scale, y = (-$('.boardArea').offset().top + angular.element(window).height() / 2) / scale;
             }
-            console.log(element);
-            console.log(x);
             element[0].style.webkitTransform =
                             element[0].style.transform =
                             'translate(' + x + 'px, ' + y + 'px)';
@@ -121,6 +127,35 @@ angular.module('honoursApp').directive('sharedSpaceObject', function($http, sock
         }
     };
 })
+
+
+
+angular.module('honoursApp').directive('sharedSpaceCommentMode', function($http, socket, $timeout, TopicServices, $state, $document) {
+    return {
+        restrict: 'E',
+        require: '^sharedSpace',
+        link: function(scope, element, attrs, ctrl) {
+            scope.addComment = function(e){
+                //current Position
+                var newCommentWindow = {
+                    posx : e.offsetX,
+                    posy : e.offsetY
+                }
+                scope.SharedSpace.$scope.createComment(newCommentWindow);
+            }
+
+
+            scope.deleteComment = function(){
+                console.log('hi');
+            }
+        }
+
+
+
+    };
+})
+
+
 
 angular.module('honoursApp').directive('sharedSpaceObjectImage', function($http, socket, $timeout, TopicServices, $state, $document) {
     return {

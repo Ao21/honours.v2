@@ -34,6 +34,34 @@ angular.module('honoursApp')
                 
                 //return baseApi.one('objects', id).getList();
             },
+            createComment: function(id){
+                return baseApi.all('comments').post(object);
+                //return baseApi.one('objects', id).getList();
+            },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             //Old stuff
             addTaskWithAccount: function(taskDetails) {
                 taskDetails.id = this.createTaskId();

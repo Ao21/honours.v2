@@ -9,6 +9,7 @@ angular.module('honoursApp', [
     'ui.router',
     'angular-medium-editor',
     'restangular',
+    'monospaced.elastic',
     'angularFileUpload'
 ])
     .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {

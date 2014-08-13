@@ -69,23 +69,24 @@
         }
         .move {
             position: absolute;
-            left: -35px;
-            top: -35px;
-            height: 30px;
-            width: 30px;
+            left: -20px;
+            top: -20px;
+            height: 40px;
+            width: 40px;
             cursor: move;
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 50%;
+            background-color: white;
             &:hover {
                 .iconic {
                     opacity: 1;
                 }
             }
             .iconic {
-                width: 20px;
-                height: 20px;
-                margin-left: 4px;
-                margin-top: 3px;
+                width: 85%;
+                height: 85%;
+                margin-left: 3px;
+                margin-top: 4px;
                 position: relative;
             }
         }

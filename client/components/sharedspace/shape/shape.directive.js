@@ -111,6 +111,7 @@ angular.module('honoursApp').directive('shapeArrow', function($http, socket, $ti
                         interact.enableDragging(false);
                         this.data("ox", this.type == "rect" ? this.attr("x") : this.attr("cx"));
                         this.data("oy", this.type == "rect" ? this.attr("y") : this.attr("cy"));
+                        console.log();
                        
                     },
                     move = function(dx, dy) {
@@ -156,16 +157,63 @@ angular.module('honoursApp').directive('shapeArrow', function($http, socket, $ti
                             list: scope.$parent.$parent.SharedSpace.spaceId
                         });
                     };
+                var scale = 1;
 
-                var posx = scope.$parent.object.posx1 || 100;
-                var posy = scope.$parent.object.posy1 || 30;
-                var posx1 = scope.$parent.object.posx2 || 15;
-                var posy1 = scope.$parent.object.posy2 || 30;
+                if (scope.$parent.scale) {
+                    scale = scope.$parent.$parent.scale;
+                }
+
+                var clickItem = function(data){
+                    
+                    if(data.ctrlKey===true){
+                        socket.emitMessages('sharedspace:object:delete', {
+                            index: scope.$index,
+                            objIndex: scope.$parent.object.in,
+                            list: scope.$parent.SharedSpace.spaceId
+                        });
+                        connections[0].line.remove();this.parent().remove()
+                        //$(data.target).parent().parent().remove()
+
+                    }
+                }
+
+                socket.recieveMessage('sharedspace:object:updates', function(data) {
+                if (data.id === scope.object.id) {
+                    if(data.posx1&&data.posy1&&data.posx2&&data.posy2){
+                        var att = {
+                            cx: data.posx1,
+                            cy: data.posy1
+                        };
+                        var att2 = {
+                            cx: data.posx2,
+                            cy: data.posy2
+                        };
+                        shapes[0].attr(att);
+                        shapes[1].attr(att2);
+                        for (var i = connections.length; i--;) {
+                            s.connection(connections[i]);
+                        }
+                        //console.log(shapes[0].data);
+                        /*this.data("ox", this.type == "rect" ? this.attr("x") : this.attr("cx"));
+                        this.data("oy", this.type == "rect" ? this.attr("y") : this.attr("cy"));*/
+                    }
+                    //scope.object.content = data.content;
+                  
+                }
+            })
+                
+                var x = (-$('.boardArea').offset().left + angular.element(window).width() / 2) / scale; var y = (-$('.boardArea').offset().top + angular.element(window).height() / 2) / scale;
+
+                var posx = scope.$parent.object.posx1 || x+100;
+                var posy = scope.$parent.object.posy1 || y+30;
+                var posx1 = scope.$parent.object.posx2 || x+15;
+                var posy1 = scope.$parent.object.posy2 || y+30;
 
                 var shapes = [s.circle(posx, posy, 15), s.circle(posx1, posy1, 15)]
                 for (var i = 0, ii = shapes.length; i < ii; i++) {
                     shapes[i].addClass('circle' + i);
                     shapes[i].drag(move, dragger, up);
+                    shapes[i].click(clickItem);
 
                 }
 
